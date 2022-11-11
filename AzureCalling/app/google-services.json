@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "489329489134",
+    "project_id": "azurecalling-30313",
+    "storage_bucket": "azurecalling-30313.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489329489134:android:e70bc73d318786add3efff",
+        "android_client_info": {
+          "package_name": "com.azure.samples.communication.calling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489329489134-qncfj7832sednu2kc1oec344g409tmj4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtVXaQv67YajfBeO93WIlRXObVVcwp9Zs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489329489134-qncfj7832sednu2kc1oec344g409tmj4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

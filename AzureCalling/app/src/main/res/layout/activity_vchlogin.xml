@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+   Copyright (c) Microsoft Corporation. All rights reserved.
+   Licensed under the MIT License.
+  -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.azure.samples.communication.calling.views.activities.VCHLoginActivity">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="1026dp"
+        android:src="@drawable/newvaxcenlogo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="897dp"
+        android:gravity="center"
+        android:text="Welcome !"
+        android:textAlignment="center"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="842dp"
+        android:gravity="center"
+        android:text="Login"
+        android:textSize="25dp" />
+
+
+    <RadioGroup
+        android:id="@+id/radio"
+        android:layout_width="500dp"
+        android:layout_height="63dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginBottom="696dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioCoordinator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:ems="10"
+            android:text="Coordinator"
+            android:textSize="32dp" />
+
+        <RadioButton
+            android:id="@+id/radioDoctor"
+            android:layout_width="wrap_content"
+            android:layout_height="63dp"
+            android:layout_marginLeft="-140dp"
+            android:ems="10"
+            android:text="Doctor"
+            android:textSize="32dp" />
+
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="503dp"
+        android:layout_height="72dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="588dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="text"
+        android:textSize="32dp" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="499dp"
+        android:layout_height="76dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginBottom="470dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textSize="32dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="500dp"
+        android:layout_height="63dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="344dp"
+        android:background="#2959ad"
+        android:text="Login"
+        android:textColor="@android:color/white"
+        android:textSize="30dp" />
+
+    <View
+        android:layout_width="500dp"
+        android:layout_height="1dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="318dp"
+        android:background="#000000" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="500dp"
+        android:layout_height="63dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="237dp"
+        android:background="#f79220"
+        android:text="Signup"
+        android:textColor="@android:color/white"
+        android:textSize="30dp" />
+
+    <ImageView
+        android:layout_width="522dp"
+        android:layout_height="294dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="105dp"
+        android:layout_marginBottom="-7dp"
+        android:src="@drawable/social_media_icons" />
+
+
+</RelativeLayout>

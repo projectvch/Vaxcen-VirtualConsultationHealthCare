@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+   Copyright (c) Microsoft Corporation. All rights reserved.
+   Licensed under the MIT License.
+  -->
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.azure.samples.communication.calling.views.activities.JoinCallActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:background="@color/fragment_background"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/meeting_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/tabview_background"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@android:color/transparent"
+            app:tabMode="fixed"
+            app:tabIndicatorHeight="0dp"
+            app:tabTextColor="@color/textbox_primary"
+            app:tabSelectedTextColor="@color/tab_selected_text_color">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/group_meeting_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Group Meeting"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/teams_meeting_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Teams Meeting"/>
+
+        </com.google.android.material.tabs.TabLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/calling_fragment_container_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</androidx.appcompat.widget.LinearLayoutCompat>

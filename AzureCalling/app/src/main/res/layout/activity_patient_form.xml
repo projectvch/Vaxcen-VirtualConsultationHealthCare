@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+   Copyright (c) Microsoft Corporation. All rights reserved.
+   Licensed under the MIT License.
+  -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.azure.samples.communication.calling.views.activities.PatientFormActivity">
+
+    <ScrollView
+        android:layout_width="828dp"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/newvaxcenlogo" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Patient Form"
+                android:textAlignment="center"
+                android:textSize="40dp"
+                android:layout_marginTop="50dp"
+                android:textStyle="bold"
+                android:textColor="#2959ad"/>
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="370dp"
+                android:layout_height="203dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <Button
+                android:id="@+id/browse"
+                android:layout_width="205dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="310dp"
+                android:text="Upload"
+                android:textSize="35dp"
+                android:background="#2959ad"
+                android:textColor="@android:color/white"/>
+
+            <EditText
+                android:id="@+id/register"
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Registered By"
+                android:inputType="text"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/disease"
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Last Name"
+                android:inputType="text"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="First Name"
+                android:inputType="text"
+                android:textSize="35dp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/symptoms"
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Middle Name (Optional)"
+                android:inputType="text"
+                android:textSize="35dp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/date"
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Date of birth"
+                android:inputType="text"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edittext2"
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Age"
+                android:textSize="35dp"
+                android:cursorVisible="false"
+                android:editable="false"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Address"
+                android:inputType="text"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Mobile No."
+                android:inputType="phone"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Email Address"
+                android:inputType="text"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/temperature"
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:hint="Temperature"
+                android:inputType="text"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="Are you sick(with high fever today)?:"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center">
+
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="601dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="-25dp"
+                    android:checked="true"
+                    android:text="Yes"
+                    android:textSize="35dp" />
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="601dp"
+                    android:layout_height="84dp"
+                    android:layout_marginTop="-35dp"
+                    android:text="No"
+                    android:textSize="35dp" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="601dp"
+                android:layout_height="95dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="Have you ever had a severe reaction to a vaccine?"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:layout_width="600dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center" >
+
+                <RadioButton
+                    android:id="@+id/smoke1"
+                    android:layout_width="601dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="-25dp"
+                    android:checked="true"
+                    android:text="Yes"
+                    android:textSize="35dp" />
+
+                <RadioButton
+                    android:id="@+id/smoke2"
+                    android:layout_width="601dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="-35dp"
+                    android:text="No"
+                    android:textSize="35dp" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="601dp"
+                android:layout_height="220dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="Are you allergic to eggs, chicken meat, neomycin, gentamicin sulphate, sodium deoxycholate, formaldehyde, cyclosporin, or other drugs?"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:layout_width="600dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <RadioButton
+                    android:id="@+id/preg"
+                    android:layout_width="601dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="-25dp"
+                    android:checked="true"
+                    android:text="Yes"
+                    android:textSize="35dp" />
+
+                <RadioButton
+                    android:id="@+id/preg1"
+                    android:layout_width="601dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="-35dp"
+                    android:text="No"
+                    android:textSize="35dp" />
+
+            </RadioGroup>
+
+
+            <TextView
+                android:layout_width="601dp"
+                android:layout_height="220dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="Do you have a medical condition like cancer or HIV/AIDS or are you receiving any treatment such as chemotherapy or radiotherapy which may lower your immunity?"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:layout_width="601dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp">
+
+                <RadioButton
+                    android:id="@+id/alcohol1"
+                    android:layout_width="601dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="-25dp"
+                    android:checked="true"
+                    android:text="Yes"
+                    android:textSize="35dp" />
+
+                <RadioButton
+                    android:id="@+id/alchol2"
+                    android:layout_width="601dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="-35dp"
+                    android:text="No"
+                    android:textSize="35dp" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="601dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="Have you had an injection of immunoglobulin or blood transfusion in the past three months?"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:layout_width="601dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp">
+
+                <RadioButton
+                    android:id="@+id/immunoglobulin"
+                    android:layout_width="601dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="-25dp"
+                    android:checked="true"
+                    android:text="Yes"
+                    android:textSize="35dp" />
+
+                <RadioButton
+                    android:id="@+id/immunoglobulin2"
+                    android:layout_width="601dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="-35dp"
+                    android:text="No"
+                    android:textSize="35dp" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="Are you pregnant?:"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:layout_width="601dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center">
+
+                <RadioButton
+                    android:id="@+id/Preg1"
+                    android:layout_width="601dp"
+                    android:layout_height="74dp"
+                    android:layout_marginTop="-25dp"
+                    android:checked="true"
+                    android:text="Yes"
+                    android:textSize="35dp" />
+
+                <RadioButton
+                    android:id="@+id/Preg2"
+                    android:layout_width="601dp"
+                    android:layout_height="84dp"
+                    android:layout_marginTop="-35dp"
+                    android:text="No"
+                    android:textSize="35dp" />
+
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="300dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="80dp"
+                android:layout_marginBottom="20dp"
+                android:background="#2959ad"
+                android:text="Submit"
+                android:textSize="35dp"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/open"
+                android:layout_width="300dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="#f79220"
+                android:text="Display"
+                android:textSize="35dp"
+                android:textColor="@android:color/white"
+                android:visibility="invisible "/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
