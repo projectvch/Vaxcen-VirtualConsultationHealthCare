@@ -3,11 +3,10 @@
 
 package com.azure.samples.communication.calling.views.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,6 +16,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.azure.samples.communication.calling.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,22 +30,28 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class VCHLoginActivity extends AppCompatActivity {
-
+    public static final String SHARED_PREFS = "shared_prefs";
     static  String regby;
     static String tokenstore;
     static String doctorname;
-    FirebaseAuth auth;
+    static String emailkey = "email_key";
+    static String passkey = "password_key";
+    static String roll;
 
+    private static String page;
+    FirebaseAuth auth;
+    SharedPreferences sharedpreferences;
+    String email, pass;
     EditText name, password;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Button button;
     private Button button2;
-
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -54,6 +62,7 @@ public class VCHLoginActivity extends AppCompatActivity {
         //Added by Deepak
         FirebaseMessaging.getInstance().subscribeToTopic("all");
 
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
         button = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
@@ -61,6 +70,12 @@ public class VCHLoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         radioGroup = (RadioGroup) findViewById(R.id.radio);
         auth = FirebaseAuth.getInstance();
+        email = sharedpreferences.getString("email_key", null);
+        pass = sharedpreferences.getString("password_key", null);
+        /*if (sharedpreferences.contains(email)) {
+            final Intent intent = new Intent(VCHLoginActivity.this, CoordinatorDashboardActivity.class);
+            startActivity(intent);
+        }*/
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -72,9 +87,12 @@ public class VCHLoginActivity extends AppCompatActivity {
                 radioButton = (RadioButton) findViewById(selectedId);
                 final String subject1 = String.valueOf(radioButton.getText());
 
+
                 final Pattern special = Pattern.compile("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
                 final Matcher m = special.matcher(name1);
                 final boolean check = m.find();
+
+
 
                 if (TextUtils.isEmpty(name1) || TextUtils.isEmpty(password1)) {
                     Toast.makeText(VCHLoginActivity.this,
@@ -92,8 +110,14 @@ public class VCHLoginActivity extends AppCompatActivity {
                     Toast.makeText(VCHLoginActivity.this,
                             "You have enter wrong email !", Toast.LENGTH_SHORT).show();
                 } else {
+                    final SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString(emailkey, name.getText().toString());
+                    editor.putString(passkey, password.getText().toString());
+                    editor.apply();
+
                     login(name1, password1, subject1);
                     if (subject1.equals("Coordinator")) {
+
                         FirebaseMessaging.getInstance().getToken()
                                 .addOnCompleteListener(new OnCompleteListener<String>() {
                                     @Override
@@ -119,29 +143,37 @@ public class VCHLoginActivity extends AppCompatActivity {
         });
     }
     public void login(final String name, final String password, final String subject1) {
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Registration");
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("registration");
         Log.d("value", String.valueOf(reference.child(name)));
+
         reference.child(name).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull final DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     final String checkroll = snapshot.child("roll").getValue(String.class);
-                    Log.d("value", String.valueOf(checkroll));
+                    //Log.d("value", String.valueOf(checkroll));
                     if (checkroll.equals(subject1)) {
                         if (checkroll.equals("Coordinator")) {
                             regby = name;
+                            roll = "Coordinator";
                             Toast.makeText(VCHLoginActivity.this,
                                     "Login Successfully", Toast.LENGTH_SHORT).show();
                             final Intent intent = new Intent(VCHLoginActivity.this,
                                                     CoordinatorDashboardActivity.class);
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
+                            finish();
+
+
 
                         } else if (checkroll.equals("Doctor")) {
+                            roll = "Doctor";
                             Toast.makeText(VCHLoginActivity.this,
                                                     "Login Successfully", Toast.LENGTH_SHORT).show();
                             final Intent intent = new Intent(VCHLoginActivity.this,
                                                     DoctorDashboardActivity.class);
                             startActivity(intent);
+                            finish();
                             doctorname = name;
                         }
                     } else {
@@ -170,4 +202,24 @@ public class VCHLoginActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, VCHSignupActivity.class);
         startActivity(intent);
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("value3", String.valueOf(roll));
+        if (roll != null) {
+            if (roll.equals("Coordinator")) {
+                final Intent i = new Intent(VCHLoginActivity.this, CoordinatorDashboardActivity.class);
+                startActivity(i);
+            } else if (roll.equals("Doctor")) {
+                final Intent i = new Intent(VCHLoginActivity.this, DoctorDashboardActivity.class);
+                startActivity(i);
+            }
+        }
+    }
+
 }

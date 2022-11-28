@@ -14,12 +14,26 @@
         android:layout_marginBottom="1077dp"
         android:src="@drawable/newvaxcenlogo" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="363dp"
+        android:layout_height="167dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="29dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-130dp"
+        android:layout_marginBottom="1065dp"
+        android:src="@drawable/doctor" />
+
+    <EditText
+        android:id="@+id/cordname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="1030dp"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:editable="false"
         android:text="Coordinator"
         android:textColor="#2959ad"
         android:textSize="30sp"
@@ -29,14 +43,14 @@
         android:layout_width="760dp"
         android:layout_height="990dp"
         android:layout_below="@+id/textView"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="218dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:columnCount="2"
-        android:rowCount="3"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/cut_card_background"
-        >
+        android:columnCount="2"
+        android:rowCount="3">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardHome"
@@ -62,6 +76,7 @@
                     android:layout_height="100dp"
                     android:src="@drawable/ic_waiting" />
             </LinearLayout>
+
             <TextView
                 android:layout_width="149dp"
                 android:layout_height="68dp"
@@ -136,6 +151,7 @@
                     android:layout_height="100dp"
                     android:src="@drawable/appointment" />
             </LinearLayout>
+
             <TextView
                 android:layout_width="149dp"
                 android:layout_height="68dp"
@@ -249,6 +265,7 @@
                     android:layout_height="100dp"
                     android:src="@drawable/ic_logout" />
             </LinearLayout>
+
             <TextView
                 android:layout_width="149dp"
                 android:layout_height="68dp"
@@ -265,7 +282,16 @@
 
     </GridLayout>
 
+    <Button
+        android:id="@+id/cb_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notification" />
 
+    <ListView
+        android:id="@+id/lv_notification"
+        android:layout_width="400dp"
+        android:layout_height="190dp" />
 
 
 </RelativeLayout>
