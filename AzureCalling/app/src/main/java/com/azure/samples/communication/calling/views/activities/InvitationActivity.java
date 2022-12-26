@@ -142,11 +142,12 @@ public class InvitationActivity extends AppCompatActivity {
         shareIntent.setFlags(FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(shareIntent);
         //Added by Deepak
-        inserttotable();
+        //inserttotable();
     }
 
     private void makeCall() {
         //Added by Deepak
+        inserttotable();
         sendnotification();
         final CallComposite composite = new CallCompositeBuilder().build();
         composite.addOnErrorEventHandler(callCompositeEventHandler);
@@ -162,6 +163,8 @@ public class InvitationActivity extends AppCompatActivity {
 
         final String locpatname = MyAdapter2.patname;
 
+        final String locregdate = MyAdapter2.regdate;
+
 
 
         try {
@@ -171,7 +174,8 @@ public class InvitationActivity extends AppCompatActivity {
             if (connect != null) {
                 //final String query = "select * from dbo.tokenstorage order by  srlno asc";
                 final String query = "select * from dbo.tokenstorage where coordinatorname = '"
-                        + locregby + "' and status = 'Waiting'" + "and patientname = '" + locpatname + "'";
+                        + locregby + "' and status = 'Waiting'" + "and patientname = '" + locpatname
+                        +  "' and regdate = '" + locregdate + "'";
                 final Statement st = connect.createStatement();
                 final ResultSet rs = st.executeQuery(query);
 
@@ -180,8 +184,10 @@ public class InvitationActivity extends AppCompatActivity {
                     tokencord = rs.getString(4);
 
                 }
-                final String title = "Join Call";
+                //final String title = "Join Call";
+                final String title = locpatname;
                 final String body = VCHLoginActivity.doctorname + " is now ready for " + locpatname;
+
                 Log.d("toooo", "sendtoken:" + tokencord);
                 final FcmNotificationsSender fcmNotificationsSender = new FcmNotificationsSender(tokencord,
                         title,

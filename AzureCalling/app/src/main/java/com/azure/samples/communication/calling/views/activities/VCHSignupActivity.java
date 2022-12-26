@@ -4,11 +4,13 @@
 package com.azure.samples.communication.calling.views.activities;
 
 
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -20,11 +22,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.azure.samples.communication.calling.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,13 +37,13 @@ public class VCHSignupActivity extends AppCompatActivity {
     Button button;
     Button button2;
     EditText email, password, phone, name;
-    int maxid = 0;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vchsignup);
         getSupportActionBar().hide();
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         roll = findViewById(R.id.spinner);
         button = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
@@ -54,8 +53,8 @@ public class VCHSignupActivity extends AppCompatActivity {
         phone = (EditText) findViewById(R.id.phone);
 
         final ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         roll.setAdapter(adapter);
 
         roll.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -82,7 +81,7 @@ public class VCHSignupActivity extends AppCompatActivity {
                 final String phone1 = phone.getText().toString();
                 final String roll1 = roll.getSelectedItem().toString();
                 final String name1 = name.getText().toString().toLowerCase();
-                final Pattern special = Pattern.compile("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
+                final Pattern special = Pattern.compile("[!.@#$%&*()_+=|<>?{}\\[\\]~-]");
                 final Matcher m = special.matcher(name1);
                 final boolean check = m.find();
 
@@ -90,7 +89,7 @@ public class VCHSignupActivity extends AppCompatActivity {
                     Toast.makeText(VCHSignupActivity.this, "Please enter patient Email", Toast.LENGTH_SHORT).show();
                 } else if (check) {
                     Toast.makeText(VCHSignupActivity.this,
-                            "Special Character is allow in username", Toast.LENGTH_SHORT).show();
+                            "Special Character and dot(.) is not allowed in username", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(phone.getText().toString())) {
                     Toast.makeText(VCHSignupActivity.this, "Please enter phone number", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(password.getText().toString())) {
@@ -121,20 +120,10 @@ public class VCHSignupActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @SuppressLint("ResourceType")
     private void formComplete() {
         final FirebaseDatabase rootnode = FirebaseDatabase.getInstance();
-        databaseReference = rootnode.getReference("newregistration");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull final DataSnapshot snapshot) {
-                maxid = (int) snapshot.getChildrenCount();
-            }
-
-            @Override
-            public void onCancelled(@NonNull final DatabaseError error) {
-
-            }
-        });
+        databaseReference = rootnode.getReference("registration");
 
         final String email1 = email.getText().toString();
         final String password1 = password.getText().toString();
@@ -143,11 +132,25 @@ public class VCHSignupActivity extends AppCompatActivity {
         final String name1 = name.getText().toString().toLowerCase();
 
         final DataholderSignup dataholder = new DataholderSignup(name1, email1, password1, phone1, roll1);
-        databaseReference.child(String.valueOf(maxid + 1)).setValue(dataholder);
+        databaseReference.child(name.getText().toString().toLowerCase()).setValue(dataholder);
         email.setText("");
         password.setText("");
         phone.setText("");
         name.setText("");
-        Toast.makeText(VCHSignupActivity.this, "User is Successfully Registered", Toast.LENGTH_LONG).show();
+        final AlertDialog.Builder builder = new AlertDialog.Builder(VCHSignupActivity.this);
+        //builder.setTitle(name1 + " has successfully registered !");
+        builder.setView(R.layout.signup_message);
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(final DialogInterface dialogInterface, final int i) {
+                final Intent intent = new Intent(VCHSignupActivity.this, VCHLoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        builder.create().show();
+        //Toast.makeText(VCHSignupActivity.this, "User is Successfully Registered", Toast.LENGTH_LONG).show();
     }
 }
+

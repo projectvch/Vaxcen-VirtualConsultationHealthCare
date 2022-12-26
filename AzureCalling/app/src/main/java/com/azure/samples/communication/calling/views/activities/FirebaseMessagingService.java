@@ -25,7 +25,11 @@ import com.google.firebase.messaging.RemoteMessage;
 
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
+
+    static  String notpatname;
     private static final String TAG = "MyFirebaseMsgService";
+    //Added by Deepak
+
 
     /**
      * Called when message is received.
@@ -51,6 +55,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
             final String notificationBody = remoteMessage.getNotification().getBody();
             final String title = remoteMessage.getNotification().getTitle();
+
+
             if (remoteMessage.getNotification().getBody() != null) {
                 sendNotification(notificationBody, title);
             }
@@ -71,7 +77,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                         .setSmallIcon(R.drawable.ic_baseline_notifications_active_24)
                         .setContentTitle(title)
                         .setContentText(messageBody)
-                        .setAutoCancel(true)
+                        .setAutoCancel(false)
                         .setSound(defaultSoundUri)
                         .setContentIntent(pendingIntent);
 

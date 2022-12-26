@@ -15,11 +15,11 @@ public class ConnectionHelper {
     @SuppressLint("NewApi")
 
     public Connection connectionclass() {
-        ip = "181.215.242.87";
-        database = "virtualconsultationhealthcare";
-        uname = "vch";
+        ip = "68.64.164.106";
+        database = "virtualconsultationhealthcare_uat";
+        uname = "vch_uat";
         pass = "Grape@123";
-        port = "19984";
+        port = "10009";
 
         final StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);

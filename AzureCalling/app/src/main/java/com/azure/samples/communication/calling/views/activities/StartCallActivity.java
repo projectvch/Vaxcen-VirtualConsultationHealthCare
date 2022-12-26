@@ -11,6 +11,7 @@ import androidx.core.app.NavUtils;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -35,6 +36,7 @@ public class StartCallActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         getSupportActionBar().hide();
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         switch (item.getItemId()) {
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
@@ -68,6 +70,14 @@ public class StartCallActivity extends AppCompatActivity {
         startCallNextButton.setOnClickListener(l -> goToMeetingInvitePage());
 
         final String savedDisplayName = appSettings.getUserProfile().getDisplayName();
+        //Added by Deepak
+        final String locdrname = VCHLoginActivity.doctorname;
+
+        if (MyAdapter2.b1) {
+            startCallDisplayName.setText(locdrname);
+            MyAdapter2.b1 = false;
+        }
+        //End of addition by Deepak
         if (savedDisplayName.length() > 0) {
             startCallDisplayName.setText(savedDisplayName);
         }

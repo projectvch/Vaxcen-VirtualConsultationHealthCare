@@ -4,15 +4,15 @@
 package com.azure.samples.communication.calling.views.activities;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -35,19 +35,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class VCHLoginActivity extends AppCompatActivity {
-    public static final String SHARED_PREFS = "shared_prefs";
     static  String regby;
     static String tokenstore;
     static String doctorname;
-    static String emailkey = "email_key";
-    static String passkey = "password_key";
     static String roll;
 
     private static String page;
     FirebaseAuth auth;
-    SharedPreferences sharedpreferences;
-    String email, pass;
     EditText name, password;
+    ImageView facebook;
+    ImageView linkedin;
+    ImageView twitter;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Button button;
@@ -59,10 +57,6 @@ public class VCHLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vchlogin);
         getSupportActionBar().hide();
-        //Added by Deepak
-        FirebaseMessaging.getInstance().subscribeToTopic("all");
-
-        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
         button = (Button) findViewById(R.id.button);
         button2 = (Button) findViewById(R.id.button2);
@@ -70,12 +64,35 @@ public class VCHLoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         radioGroup = (RadioGroup) findViewById(R.id.radio);
         auth = FirebaseAuth.getInstance();
-        email = sharedpreferences.getString("email_key", null);
-        pass = sharedpreferences.getString("password_key", null);
+        facebook = (ImageView) findViewById(R.id.facebook);
+        linkedin = (ImageView) findViewById(R.id.linkedin);
+        twitter = (ImageView) findViewById(R.id.twitter);
         /*if (sharedpreferences.contains(email)) {
             final Intent intent = new Intent(VCHLoginActivity.this, CoordinatorDashboardActivity.class);
             startActivity(intent);
         }*/
+
+
+        facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                gotoUrl("https://www.facebook.com/");
+            }
+        });
+
+        linkedin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                gotoUrl("https://www.linkedin.com/");
+            }
+        });
+
+        twitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                gotoUrl("https://twitter.com/");
+            }
+        });
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -110,11 +127,6 @@ public class VCHLoginActivity extends AppCompatActivity {
                     Toast.makeText(VCHLoginActivity.this,
                             "You have enter wrong email !", Toast.LENGTH_SHORT).show();
                 } else {
-                    final SharedPreferences.Editor editor = sharedpreferences.edit();
-                    editor.putString(emailkey, name.getText().toString());
-                    editor.putString(passkey, password.getText().toString());
-                    editor.apply();
-
                     login(name1, password1, subject1);
                     if (subject1.equals("Coordinator")) {
 
@@ -142,6 +154,12 @@ public class VCHLoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void gotoUrl(final String s) {
+        final Uri uri = Uri.parse(s);
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
+    }
+
     public void login(final String name, final String password, final String subject1) {
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("registration");
         Log.d("value", String.valueOf(reference.child(name)));

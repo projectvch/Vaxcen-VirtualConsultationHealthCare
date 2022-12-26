@@ -3,9 +3,7 @@
 
 package com.azure.samples.communication.calling.views.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
@@ -19,16 +17,8 @@ import com.azure.samples.communication.calling.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class DoctorDashboardActivity extends AppCompatActivity {
-    public static final String SHARED_PREFS = "shared_prefs";
-
-    // key for storing email.
-    static String emailkey = "email_key";
-
-    // key for storing password.
-    static String passkey = "password_key";
 
     // variable for shared preferences.
-    SharedPreferences sharedpreferences;
     FirebaseAuth mAuth;
     String email;
 
@@ -64,12 +54,6 @@ public class DoctorDashboardActivity extends AppCompatActivity {
 
         final String locdrname = VCHLoginActivity.doctorname;
         drname.setText("Dr. " + locdrname.toUpperCase().charAt(0) + locdrname.substring(1).toLowerCase());
-
-        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-
-        // getting data from shared prefs and
-        // storing it in our string variable.
-        email = sharedpreferences.getString("email_key", null);
 
         cardHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,16 +126,7 @@ public class DoctorDashboardActivity extends AppCompatActivity {
     }
 
     public void signOutUser() {
-        final SharedPreferences.Editor editor = sharedpreferences.edit();
-
-        // below line will clear
-        // the data in shared prefs.
-        editor.clear();
-        sharedpreferences.getString("subject_key", null);
         VCHLoginActivity.roll = null;
-        // below line will apply empty
-        // data to shared prefs.
-        editor.apply();
 
         final Intent intent = new Intent(this, VCHLoginActivity.class);
         startActivity(intent);

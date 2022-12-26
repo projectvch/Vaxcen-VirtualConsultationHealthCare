@@ -26,6 +26,8 @@ public class FcmNotificationsSender  {
     String userFcmToken;
     String title;
     String body;
+    //Added by Deepak
+
     Context mContext;
     Activity mActivity;
 
@@ -40,6 +42,8 @@ public class FcmNotificationsSender  {
         this.userFcmToken = userFcmToken;
         this.title = title;
         this.body = body;
+        //Added by Deepak
+
         this.mContext = mContext;
         this.mActivity = mActivity;
     }
@@ -53,6 +57,7 @@ public class FcmNotificationsSender  {
             final JSONObject notiObject = new JSONObject();
             notiObject.put("title", title);
             notiObject.put("body", body);
+
             notiObject.put("icon", R.drawable.ic_baseline_notifications_active_24);
             // enter icon that exists in drawable only
 

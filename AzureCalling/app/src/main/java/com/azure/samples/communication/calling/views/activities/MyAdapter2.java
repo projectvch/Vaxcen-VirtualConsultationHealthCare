@@ -15,27 +15,36 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+
 import com.azure.samples.communication.calling.R;
+
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 
-
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MyAdapter2 extends FirebaseRecyclerAdapter<Dataholder, MyAdapter2.Myviewholder> {
 
+
     static  String cordname;
     static  String patname;
-    int maxid = 0;
+    static  String regdate;
+    static  boolean b1;
+    Connection connect;
+    String connectionresult = "";
+    String loccordname;
+    String locpatname;
+    String locregdate;
 
     public MyAdapter2(@NonNull final FirebaseRecyclerOptions<Dataholder> options) {
         super(options);
@@ -47,12 +56,20 @@ public class MyAdapter2 extends FirebaseRecyclerAdapter<Dataholder, MyAdapter2.M
                                     @NonNull final Dataholder model) {
         holder.name.setText(model.getName());
         holder.email.setText(model.getEmail());
-        holder.disease.setText(model.getDisease());
+        holder.lastname.setText(model.getLastname());
+        holder.middlename.setText(model.getMiddlename());
         holder.phone.setText(model.getPhone());
-        holder.symptoms.setText(model.getSymptoms());
+        holder.age.setText(model.getAge() + " years");
         holder.address.setText(model.getAddress());
         holder.date.setText(model.getDate());
+        holder.waitdate.setText(model.getWaitingdate());
         holder.register.setText(model.getRegister());
+        holder.feaver.setText(model.getFeaver());
+        holder.vaccine.setText(model.getVaccine());
+        holder.hiv.setText(model.getHiv());
+        holder.allergic.setText(model.getAllergic());
+        holder.immunoglob.setText(model.getImmunoglob());
+        holder.pregnant.setText(model.getPregnant());
         Glide.with(holder.img.getContext()).load(model.getPimage()).into(holder.img);
 
 
@@ -67,6 +84,10 @@ public class MyAdapter2 extends FirebaseRecyclerAdapter<Dataholder, MyAdapter2.M
                 //Added by Deepak
                 cordname = model.register;
                 patname  = model.name;
+                regdate = model.date;
+                b1 = true;
+
+
                 final DialogPlus dialogPlus = DialogPlus.newDialog(holder.img.getContext())
                         .setContentHolder(new ViewHolder(R.layout.activity_intro_view))
                         .setExpanded(true, 1600)
@@ -99,60 +120,24 @@ public class MyAdapter2 extends FirebaseRecyclerAdapter<Dataholder, MyAdapter2.M
             @Override
             public void onClick(final View view) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(holder.img.getContext());
+                loccordname = model.register;
+                locpatname  = model.name;
+                locregdate = model.date;
                 builder.setTitle("Confirmation");
                 builder.setMessage("Are you sure you want mark this patient as completed ?");
 
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(final DialogInterface dialogInterface, final int i) {
-
-
-                        //final Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                        //final String completecalldate = String.valueOf(timestamp.getTime());
-                        FirebaseDatabase.getInstance()
-                                .getReference().child("completeusers")
-                                .addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull final DataSnapshot snapshot) {
-                                        maxid = (int) snapshot.getChildrenCount();
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull final DatabaseError error) {
-
-                                    }
-                                });
-                        FirebaseDatabase.getInstance().getReference().child("newcompleteusers")
-                                .child(String.valueOf(maxid + 1)).child("date").setValue(model.date);
-
-                        FirebaseDatabase.getInstance().getReference().child("newcompleteusers")
-                                .child(String.valueOf(maxid + 1)).child("img").setValue(model.pimage);
-
-                        FirebaseDatabase.getInstance().getReference().child("newcompleteusers")
-                                .child(String.valueOf(maxid + 1)).child("address").setValue(model.address);
-
-                        FirebaseDatabase.getInstance().getReference().child("newcompleteusers")
-                                .child(String.valueOf(maxid + 1)).child("email").setValue(model.email);
-
-                        FirebaseDatabase.getInstance().getReference().child("newcompleteusers")
-                                .child(String.valueOf(maxid + 1)).child("disease").setValue(model.disease);
-
-                        FirebaseDatabase.getInstance().getReference().child("newcompleteusers")
-                                .child(String.valueOf(maxid + 1)).child("symptoms").setValue(model.symptoms);
-
-                        FirebaseDatabase.getInstance().getReference().child("newcompleteusers")
-                                .child(String.valueOf(maxid + 1)).child("register").setValue(model.register);
-
-                        FirebaseDatabase.getInstance().getReference().child("newcompleteusers")
-                                .child(String.valueOf(maxid + 1)).child("phone").setValue(model.phone);
-
-                        FirebaseDatabase.getInstance().getReference().child("newcompleteusers")
-                                .child(String.valueOf(maxid + 1)).child("name").setValue(model.name)
+                        map.put("status", "completed");
+                        FirebaseDatabase.getInstance().getReference().child("patient_information")
+                                .child(getRef(position).getKey()).updateChildren(map)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(final Void aVoid) {
-                                        FirebaseDatabase.getInstance().getReference().child("newcomuser")
-                                                .child(getRef(position).getKey()).removeValue();
+                                        updatetokenstorage();
+                                        Log.d("success", "Canceled Appointment");
+
                                     }
                                 });
                     }
@@ -171,6 +156,38 @@ public class MyAdapter2 extends FirebaseRecyclerAdapter<Dataholder, MyAdapter2.M
 
     }
 
+    public void updatetokenstorage() {
+
+
+
+        try {
+            final ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connectionclass();
+
+            if (connect != null) {
+
+                final String updquery = "update dbo.tokenstorage set status = 'Completed' where coordinatorname = '"
+                        + loccordname + "' and patientname = '" + locpatname + "' and regdate = '" + locregdate + "'";
+                final Statement updst = connect.createStatement();
+                final ResultSet updrs = updst.executeQuery(updquery);
+
+
+
+            } else {
+                connectionresult = "Check Connection";
+            }
+
+        } catch (Exception ex) {
+
+
+
+        }
+
+
+    }
+
+
+
     @NonNull
     @Override
     public Myviewholder onCreateViewHolder(@NonNull final ViewGroup parent, final int viewType) {
@@ -182,18 +199,27 @@ public class MyAdapter2 extends FirebaseRecyclerAdapter<Dataholder, MyAdapter2.M
         ImageView img;
         ImageView edit;
         ImageView deleteicon;
-        TextView name, phone, email, disease, symptoms, address, date, register;
+        TextView name, phone, email, lastname, middlename, age, address, date, register, waitdate,
+                feaver, vaccine, allergic, hiv, immunoglob, pregnant;
         Myviewholder(@NonNull final View itemView) {
             super(itemView);
             img = (ImageView) itemView.findViewById(R.id.img1);
             name = (TextView) itemView.findViewById(R.id.nametext);
             phone = (TextView) itemView.findViewById(R.id.phonetext);
             email = (TextView) itemView.findViewById(R.id.emailtext);
-            symptoms = (TextView) itemView.findViewById(R.id.symptomstext);
-            disease = (TextView) itemView.findViewById(R.id.diseasetext);
-            address = (TextView) itemView.findViewById(R.id.address);
-            date = (TextView) itemView.findViewById(R.id.date);
-            register = (TextView) itemView.findViewById(R.id.register);
+            age = (TextView) itemView.findViewById(R.id.agetext);
+            lastname = (TextView) itemView.findViewById(R.id.lnametext);
+            middlename = (TextView) itemView.findViewById(R.id.mnametext);
+            address = (TextView) itemView.findViewById(R.id.addresstext);
+            date = (TextView) itemView.findViewById(R.id.datetext);
+            waitdate = (TextView) itemView.findViewById(R.id.waitingdatetext);
+            register = (TextView) itemView.findViewById(R.id.registertext);
+            feaver = (TextView) itemView.findViewById(R.id.feavertext);
+            vaccine = (TextView) itemView.findViewById(R.id.vaccinetext);
+            allergic = (TextView) itemView.findViewById(R.id.allergictext);
+            hiv = (TextView) itemView.findViewById(R.id.hivtext);
+            immunoglob = (TextView) itemView.findViewById(R.id.immunoglobttext);
+            pregnant = (TextView) itemView.findViewById(R.id.pregnanttext);
             edit = (ImageView) itemView.findViewById(R.id.editicon);
             deleteicon = (ImageView) itemView.findViewById(R.id.deleteicon);
         }

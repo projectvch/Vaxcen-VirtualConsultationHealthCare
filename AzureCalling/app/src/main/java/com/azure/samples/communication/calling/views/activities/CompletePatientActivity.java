@@ -7,13 +7,14 @@ package com.azure.samples.communication.calling.views.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.SearchView;
 import com.azure.samples.communication.calling.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class CompletePatientActivity extends AppCompatActivity {
     RecyclerView recview3;
     MyAdapter3 adapter3;
     DBmain dBmain;
+    DatabaseReference databaseReference;
     ArrayList<Model>modelArrayList;
 
 
@@ -29,13 +31,17 @@ public class CompletePatientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_patient);
         getSupportActionBar().hide();
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         recview3 = (RecyclerView) findViewById(R.id.recview3);
         recview3.setLayoutManager(new LinearLayoutManager(this));
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("patient_information");
+
+        final Query query = databaseReference.orderByChild("status").equalTo("completed");
 
         final FirebaseRecyclerOptions<Dataholder> options =
                 new FirebaseRecyclerOptions.Builder<Dataholder>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("completeusers"),
+                        .setQuery(query,
                                 Dataholder.class)
                         .build();
 
@@ -49,40 +55,6 @@ public class CompletePatientActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         adapter3.startListening();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.searchmenu, menu);
-        final MenuItem item = menu.findItem(R.id.search);
-
-        final SearchView searchView = (SearchView) item.getActionView();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(final String s) {
-                processsearch(s);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(final String s) {
-                processsearch(s);
-                return false;
-            }
-        });
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    private void processsearch(final String s) {
-        final FirebaseRecyclerOptions<Dataholder> options =
-                new FirebaseRecyclerOptions.Builder<Dataholder>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("completeusers").
-                                orderByChild("name").startAt(s).endAt(s + "\uf8ff"), Dataholder.class)
-                        .build();
-        adapter3 = new MyAdapter3(options);
-        adapter3.startListening();
-        recview3.setAdapter(adapter3);
     }
 }
 

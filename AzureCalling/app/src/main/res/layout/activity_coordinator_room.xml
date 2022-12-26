@@ -17,29 +17,6 @@
         android:layout_marginBottom="1077dp"
         android:src="@drawable/newvaxcenlogo" />
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="917dp"
-        android:text="Join Now"
-        android:textSize="30dp"
-        android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/editicon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="40dp"
-        android:layout_marginEnd="53dp"
-        android:layout_marginBottom="954dp"
-        android:src="@drawable/video_conference" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="100dp"
