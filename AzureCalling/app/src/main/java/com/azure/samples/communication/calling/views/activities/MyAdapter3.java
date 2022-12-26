@@ -15,10 +15,9 @@ import com.azure.samples.communication.calling.R;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import java.util.HashMap;
-import java.util.Map;
 
-public class MyAdapter3 extends FirebaseRecyclerAdapter<Dataholder, MyAdapter3.Myviewholder> {
+
+public class MyAdapter3 extends FirebaseRecyclerAdapter< Dataholder, MyAdapter3.Myviewholder> {
 
     public MyAdapter3(@NonNull final FirebaseRecyclerOptions<Dataholder> options) {
         super(options);
@@ -29,17 +28,21 @@ public class MyAdapter3 extends FirebaseRecyclerAdapter<Dataholder, MyAdapter3.M
                                     @NonNull final Dataholder model) {
         holder.name.setText(model.getName());
         holder.email.setText(model.getEmail());
-        holder.disease.setText(model.getDisease());
+        holder.lastname.setText(model.getLastname());
+        holder.middlename.setText(model.getMiddlename());
         holder.phone.setText(model.getPhone());
-        holder.symptoms.setText(model.getSymptoms());
+        holder.age.setText(model.getAge() + " years");
         holder.address.setText(model.getAddress());
         holder.date.setText(model.getDate());
         holder.register.setText(model.getRegister());
+        holder.feaver.setText(model.getFeaver());
+        holder.vaccine.setText(model.getVaccine());
+        holder.hiv.setText(model.getHiv());
+        holder.allergic.setText(model.getAllergic());
+        holder.immunoglob.setText(model.getImmunoglob());
+        holder.pregnant.setText(model.getPregnant());
         Glide.with(holder.img.getContext()).load(model.getPimage()).into(holder.img);
 
-
-        final Map<String, Object> map = new HashMap<>();
-        final Map<String, Object> map1 = new HashMap<>();
     }
 
     @NonNull
@@ -53,18 +56,26 @@ public class MyAdapter3 extends FirebaseRecyclerAdapter<Dataholder, MyAdapter3.M
         ImageView img;
         ImageView edit;
         CheckBox deleteicon;
-        TextView name, phone, email, disease, symptoms, address, date, register;
+        TextView name, phone, email, lastname, middlename, age, address, date, register,
+                feaver, vaccine, allergic, hiv, immunoglob, pregnant;
         Myviewholder(@NonNull final View itemView) {
             super(itemView);
             img = (ImageView) itemView.findViewById(R.id.img1);
             name = (TextView) itemView.findViewById(R.id.nametext);
             phone = (TextView) itemView.findViewById(R.id.phonetext);
             email = (TextView) itemView.findViewById(R.id.emailtext);
-            symptoms = (TextView) itemView.findViewById(R.id.symptomstext);
-            disease = (TextView) itemView.findViewById(R.id.diseasetext);
-            address = (TextView) itemView.findViewById(R.id.address);
-            date = (TextView) itemView.findViewById(R.id.date);
-            register = (TextView) itemView.findViewById(R.id.register);
+            age = (TextView) itemView.findViewById(R.id.agetext);
+            lastname = (TextView) itemView.findViewById(R.id.lnametext);
+            middlename = (TextView) itemView.findViewById(R.id.mnametext);
+            address = (TextView) itemView.findViewById(R.id.addresstext);
+            date = (TextView) itemView.findViewById(R.id.datetext);
+            register = (TextView) itemView.findViewById(R.id.registertext);
+            feaver = (TextView) itemView.findViewById(R.id.feavertext);
+            vaccine = (TextView) itemView.findViewById(R.id.vaccinetext);
+            allergic = (TextView) itemView.findViewById(R.id.allergictext);
+            hiv = (TextView) itemView.findViewById(R.id.hivtext);
+            immunoglob = (TextView) itemView.findViewById(R.id.immunoglobttext);
+            pregnant = (TextView) itemView.findViewById(R.id.pregnanttext);
         }
     }
 }

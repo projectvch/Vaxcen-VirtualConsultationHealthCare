@@ -68,7 +68,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/disease"
+                android:id="@+id/lastname"
                 android:layout_width="601dp"
                 android:layout_height="74dp"
                 android:layout_gravity="center"
@@ -93,7 +93,7 @@
                 android:textStyle="bold"/>
 
             <EditText
-                android:id="@+id/symptoms"
+                android:id="@+id/middlename"
                 android:layout_width="601dp"
                 android:layout_height="74dp"
                 android:layout_gravity="center"
@@ -105,7 +105,7 @@
                 android:textStyle="bold"/>
 
             <EditText
-                android:id="@+id/date"
+                android:id="@+id/birthdate"
                 android:layout_width="601dp"
                 android:layout_height="74dp"
                 android:layout_gravity="center"
@@ -117,7 +117,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edittext2"
+                android:id="@+id/age"
                 android:layout_width="601dp"
                 android:layout_height="74dp"
                 android:layout_gravity="center"
@@ -172,7 +172,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:ems="10"
-                android:hint="Temperature"
+                android:hint="Temperature in celsius °C"
                 android:inputType="text"
                 android:textSize="35dp"
                 android:textStyle="bold" />
@@ -196,7 +196,7 @@
                     android:layout_width="601dp"
                     android:layout_height="74dp"
                     android:layout_marginTop="-25dp"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="Yes"
                     android:textSize="35dp" />
 
@@ -205,6 +205,7 @@
                     android:layout_width="601dp"
                     android:layout_height="84dp"
                     android:layout_marginTop="-35dp"
+                    android:checked="true"
                     android:text="No"
                     android:textSize="35dp" />
 
@@ -229,7 +230,7 @@
                     android:layout_width="601dp"
                     android:layout_height="74dp"
                     android:layout_marginTop="-25dp"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="Yes"
                     android:textSize="35dp" />
 
@@ -238,6 +239,7 @@
                     android:layout_width="601dp"
                     android:layout_height="74dp"
                     android:layout_marginTop="-35dp"
+                    android:checked="true"
                     android:text="No"
                     android:textSize="35dp" />
 
@@ -263,7 +265,7 @@
                     android:layout_width="601dp"
                     android:layout_height="74dp"
                     android:layout_marginTop="-25dp"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="Yes"
                     android:textSize="35dp" />
 
@@ -272,6 +274,7 @@
                     android:layout_width="601dp"
                     android:layout_height="74dp"
                     android:layout_marginTop="-35dp"
+                    android:checked="true"
                     android:text="No"
                     android:textSize="35dp" />
 
@@ -298,7 +301,7 @@
                     android:layout_width="601dp"
                     android:layout_height="74dp"
                     android:layout_marginTop="-25dp"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="Yes"
                     android:textSize="35dp" />
 
@@ -307,6 +310,7 @@
                     android:layout_width="601dp"
                     android:layout_height="74dp"
                     android:layout_marginTop="-35dp"
+                    android:checked="true"
                     android:text="No"
                     android:textSize="35dp" />
 
@@ -332,7 +336,7 @@
                     android:layout_width="601dp"
                     android:layout_height="74dp"
                     android:layout_marginTop="-25dp"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="Yes"
                     android:textSize="35dp" />
 
@@ -341,6 +345,7 @@
                     android:layout_width="601dp"
                     android:layout_height="74dp"
                     android:layout_marginTop="-35dp"
+                    android:checked="true"
                     android:text="No"
                     android:textSize="35dp" />
 
@@ -365,7 +370,7 @@
                     android:layout_width="601dp"
                     android:layout_height="74dp"
                     android:layout_marginTop="-25dp"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="Yes"
                     android:textSize="35dp" />
 
@@ -374,6 +379,7 @@
                     android:layout_width="601dp"
                     android:layout_height="84dp"
                     android:layout_marginTop="-35dp"
+                    android:checked="true"
                     android:text="No"
                     android:textSize="35dp" />
 
@@ -402,7 +408,7 @@
                 android:text="Display"
                 android:textSize="35dp"
                 android:textColor="@android:color/white"
-                android:visibility="invisible "/>
+                android:visibility="invisible"/>
 
         </LinearLayout>
 

@@ -25,16 +25,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text1"
-            android:text="DateOfBirth : "
+            android:text="Register Time : "
             android:textStyle="bold"
             android:textSize="25dp" />
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/datetext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="280dp"
-            android:text="ScheduleDate : "
+            android:text="Date"
             android:textColor="#000"
             android:textSize="25dp" />
 
@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="280dp"
-            android:layout_below="@id/date"
+            android:layout_below="@id/datetext"
             android:text="Name"
             android:textColor="#000"
             android:textSize="25dp" />
@@ -69,12 +69,12 @@
             android:textSize="25dp" />
 
         <TextView
-            android:id="@+id/diseasetext"
+            android:id="@+id/lnametext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/nametext"
             android:layout_marginLeft="280dp"
-            android:text="Disease"
+            android:text="LName"
             android:textColor="#000"
             android:textSize="25sp" />
 
@@ -89,12 +89,12 @@
             android:textSize="25dp" />
 
         <TextView
-            android:id="@+id/symptomstext"
+            android:id="@+id/mnametext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/diseasetext"
+            android:layout_below="@id/lnametext"
             android:layout_marginLeft="280dp"
-            android:text="Symptoms"
+            android:text="MName"
             android:textColor="#000"
             android:textSize="25dp" />
 
@@ -104,17 +104,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/text4"
-            android:text="Phone : "
+            android:text="Age : "
             android:textStyle="bold"
             android:textSize="25dp" />
 
         <TextView
-            android:id="@+id/phonetext"
+            android:id="@+id/agetext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/symptomstext"
+            android:layout_below="@id/mnametext"
             android:layout_marginLeft="280dp"
-            android:text="Phone"
+            android:text="Age"
             android:textColor="#000"
             android:textSize="25dp" />
 
@@ -124,6 +124,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/text5"
+            android:text="Phone : "
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/phonetext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/agetext"
+            android:layout_marginLeft="280dp"
+            android:text="Phone"
+            android:textColor="#000"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/text7"
+            android:layout_marginLeft="90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text6"
             android:text="Email : "
             android:textStyle="bold"
             android:textSize="25dp" />
@@ -139,17 +159,17 @@
             android:textSize="25dp" />
 
         <TextView
-            android:id="@+id/text7"
+            android:id="@+id/text8"
             android:layout_marginLeft="90dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text6"
+            android:layout_below="@id/text7"
             android:text="Address : "
             android:textStyle="bold"
             android:textSize="25dp" />
 
         <TextView
-            android:id="@+id/address"
+            android:id="@+id/addresstext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/emailtext"
@@ -159,29 +179,173 @@
             android:textSize="25dp" />
 
         <TextView
-            android:id="@+id/text8"
+            android:id="@+id/text9"
             android:layout_marginLeft="90dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text7"
+            android:layout_below="@id/text8"
             android:text="Registered By : "
             android:textStyle="bold"
             android:textSize="25dp" />
 
         <TextView
-            android:id="@+id/register"
+            android:id="@+id/registertext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/address"
+            android:layout_below="@id/addresstext"
             android:layout_marginLeft="280dp"
             android:text="Registered By"
             android:textColor="#000"
             android:textSize="25dp" />
 
+        <TextView
+            android:id="@+id/moreinfo"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text9"
+            android:text="More Information"
+            android:textStyle="bold"
+            android:textSize="28dp" />
+
+        <TextView
+            android:id="@+id/moreinfotext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registertext"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="25dp"
+            android:text=" "
+            android:textColor="#000"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/text10"
+            android:layout_marginLeft="90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/moreinfo"
+            android:text="Sick with a fever : "
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/feavertext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/moreinfotext"
+            android:layout_marginLeft="320dp"
+            android:text="Yes/No"
+            android:textColor="#000"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/text11"
+            android:layout_marginLeft="90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text10"
+            android:text="Are you pregnant : "
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/pregnanttext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/feavertext"
+            android:layout_marginLeft="330dp"
+            android:text="Yes/No"
+            android:textColor="#000"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/text12"
+            android:layout_marginLeft="90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text11"
+            android:text="With medical condition : "
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/hivtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pregnanttext"
+            android:layout_marginLeft="390dp"
+            android:text="Yes/No"
+            android:textColor="#000"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/text13"
+            android:layout_marginLeft="90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text12"
+            android:text="Allergic to food or drugs : "
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/allergictext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hivtext"
+            android:layout_marginLeft="410dp"
+            android:text="Yes/No"
+            android:textColor="#000"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/text14"
+            android:layout_marginLeft="90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text13"
+            android:text="History of severe reaction to a vaccine : "
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/vaccinetext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/allergictext"
+            android:layout_marginLeft="570dp"
+            android:text="Yes"
+            android:textColor="#000"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/text15"
+            android:layout_marginLeft="90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text14"
+            android:text="Had immunoglobulin or blood transfusion in the past : "
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/immunoglobttext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vaccinetext"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="30dp"
+            android:text="Yes"
+            android:textColor="#000"
+            android:textSize="25dp" />
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/register"
+            android:layout_below="@id/text15"
             android:orientation="horizontal">
 
             <ImageView

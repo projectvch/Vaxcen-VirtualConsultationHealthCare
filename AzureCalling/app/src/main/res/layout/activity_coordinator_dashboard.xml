@@ -282,16 +282,21 @@
 
     </GridLayout>
 
-    <Button
+
+    <ImageView
         android:id="@+id/cb_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Notification" />
+        android:layout_marginTop="185dp"
+        android:layout_marginLeft="740dp"/>
 
     <ListView
         android:id="@+id/lv_notification"
-        android:layout_width="400dp"
-        android:layout_height="190dp" />
-
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:divider="@null"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="400dp"
+        />
 
 </RelativeLayout>
